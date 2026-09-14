@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from '@/lib/auth-client';
 import { Avatar, Button, Dropdown, Label } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';

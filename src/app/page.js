@@ -4,65 +4,89 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+
+        <>
+          {/* SoftPolli Advertisement / Credit Component */}
+          <div className="max-w-sm mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden font-sans transition-all hover:shadow-xl">
+            <div className="p-6">
+              {/* "Developed By" Header */}
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <span className="h-px w-8 bg-gray-200" />
+                <p className="text-xs text-gray-500 uppercase tracking-widest font-semibold text-center">
+                  Proudly Developed By
+                </p>
+                <span className="h-px w-8 bg-gray-200" />
+              </div>
+              {/* Company Logo */}
+              <div className="flex justify-center mb-5">
+                {/* Ensure the src path matches where you store the image in your client's project */}
+                <Image
+                  width={811}
+                  height={811}
+                  src="/logos/SoftPolli-logo-offset.png"
+                  alt="SoftPolli Logo"
+                  className="h-10 object-contain drop-shadow-sm"
+                />
+              </div>
+              {/* Short Description / Tagline */}
+              <p className="text-sm text-gray-600 text-center mb-6 leading-relaxed">
+                A modern IT solution &amp; software development agency delivering
+                scalable web apps, custom software, and innovative digital solutions.
+              </p>
+              {/* Services Badges */}
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                <span className="px-3 py-1 bg-[#4A148C]/10 text-[#4A148C] text-xs font-semibold rounded-full border border-[#4A148C]/20">
+                  Web Apps
+                </span>
+                <span className="px-3 py-1 bg-[#FF6D00]/10 text-[#FF6D00] text-xs font-semibold rounded-full border border-[#FF6D00]/20">
+                  Custom Software
+                </span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs font-semibold rounded-full border border-gray-200">
+                  IT Solutions
+                </span>
+              </div>
+              {/* Divider */}
+              <hr className="border-gray-100 mb-5" />
+              {/* Footer: Link & Button */}
+              <div className="flex flex-col items-center gap-4">
+                {/* Company Website Link */}
+                <a
+                  href="https://www.softpolli.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#4A148C] hover:text-[#FF6D00] font-semibold transition-colors inline-flex items-center gap-1.5 group"
+                >
+                  Visit www.softpolli.com
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+                {/* Call to Action Button */}
+                <a
+                  href="https://www.softpolli.com/contact"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full text-center bg-linear-to-r from-[#4A148C] to-[#FF6D00] hover:from-[#3a0f70] hover:to-[#e66200] text-white font-medium py-2.5 px-4 rounded-lg transition-all shadow-md hover:shadow-lg focus:ring-2 focus:ring-offset-2 focus:ring-[#4A148C]"
+                >
+                  Work With Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </>
+
+
       </main>
     </div>
   );
