@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
+import { useSession } from '@/lib/auth-client';
 
 
 const NavLink = ({ href, icon, children, pathname }) => {
@@ -29,37 +30,12 @@ const Sidebar = () => {
     const { data, isPending } = useSession();
     const user = data?.user;
 
-    const userNavLinks = [
-        { icon: "📈", href: "/dashboard/user", label: "Dashboard" },
-        { icon: "👤", href: "/dashboard/profile", label: "My Profile" },
-        { icon: "📋", href: "/dashboard/user/mybookings", label: "My Booked Tickets" },
-        { icon: "💳", href: "/dashboard/user/transaction-history", label: "My Transaction" },
+    const navItems = [
+        // { icon: "📈", href: "/dashboard", label: "Dashboard" },
+        { icon: "👤", href: "/dashboard/manageitems", label: "Manage Items" },
+        { icon: "📊", href: "/dashboard/admin/manageorders", label: "Manage Orders" },
+        // { icon: "🧑", href: "/dashboard/admin/manage-user", label: "Manage User" },
     ];
-
-    const vendorNavLinks = [
-        { icon: "📈", href: "/dashboard/vendor", label: "Dashboard" },
-        { icon: "👤", href: "/dashboard/profile", label: "My Profile" },
-        { icon: "➕", href: "/dashboard/vendor/addticket", label: "Add Tickets" },
-        { icon: "🆕", href: "/dashboard/vendor/addedtickets", label: "Added Tickets" },
-        { icon: "📋", href: "/dashboard/vendor/requestedbookings", label: "Requested Bookings" },
-        { icon: "📈", href: "/dashboard/vendor/revenue-overview", label: "Revenue Overview" }
-    ];
-
-    const adminNavLinks = [
-        { icon: "📈", href: "/dashboard/admin", label: "Dashboard" },
-        { icon: "👤", href: "/dashboard/profile", label: "My Profile" },
-        { icon: "📊", href: "/dashboard/admin/manageticket", label: "Manage Ticket" },
-        { icon: "🧑", href: "/dashboard/admin/manage-user", label: "Manage User" },
-        { icon: "🎫", href: "/dashboard/admin/advertise-tickets", label: "Advertise Tickets" }
-    ];
-
-    const navLinksMap = {
-        user: userNavLinks,
-        vendor: vendorNavLinks,
-        admin: adminNavLinks
-    }
-
-    const navItems = navLinksMap[user?.role || 'user'];
 
     const pathname = usePathname();
 
@@ -86,32 +62,32 @@ const Sidebar = () => {
                     className="flex items-center gap-2 font-bold text-xl text-foreground hover:opacity-90"
                 >
                     <Image
-                        src="/images/logo/logo-bg.png"
-                        alt="TicketBari Logo"
-                        width={36}
-                        height={36}
-                        className="object-contain rounded-full h-auto"
+                        src="/logos/SoftPolli-logo-offset.png"
+                        alt="SoftPolli Logo"
+                        width={150}
+                        height={50}
+                        className="object-contain h-auto"
                     />
-                    <span className="bg-linear-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
+                    {/* <span className="bg-linear-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
                         TicketBari
-                    </span>
+                    </span> */}
                 </Link>
             </div>
 
             {navContent}
-            
+
 
             {/* Company Advertisement */}
             <div className="p-4 border-t border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors cursor-pointer">
                     <div className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                        A
+                        SP
                     </div>
                     <div className="flex-1 min-w-0">
                         <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
                             SoftPolli
                         </p>
-                        <p className="text-[10px] text-slate-400 truncate">sabbir@bd.com</p>
+                        <p className="text-[10px] text-slate-400 truncate">softpolli.com</p>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ import Navbar from '@/components/Dashboard/Navbar';
 import Sidebar from '@/components/Dashboard/Sidebar';
 import React, { useState } from 'react';
 
-const Layout = () => {
+const Layout = ({children}) => {
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

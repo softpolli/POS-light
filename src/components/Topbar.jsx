@@ -28,13 +28,13 @@ const Topbar = () => {
 
     const navItems = (
         <>
-            <MyNavLink href="/">Home</MyNavLink>
-            <MyNavLink href="/alltickets">All Ticket</MyNavLink>
-            <MyNavLink href="/about">About</MyNavLink>
-            <MyNavLink href="/contact">Contact</MyNavLink>
-            {!isPending && user && (
+            {/* <MyNavLink href="/">Home</MyNavLink> */}
+            {/* <MyNavLink href="/alltickets">All Ticket</MyNavLink> */}
+            {/* <MyNavLink href="/about">About</MyNavLink> */}
+            {/* <MyNavLink href="/dashboard">Dashboard</MyNavLink> */}
+            {/* {!isPending && user && (
                 <MyNavLink href={`/dashboard/${user.role}`}>Dashboard</MyNavLink>
-            )}
+            )} */}
         </>
     );
 
@@ -82,15 +82,15 @@ const Topbar = () => {
                         className="flex items-center gap-2 font-bold text-xl text-foreground hover:opacity-90"
                     >
                         <Image
-                            src="/logos/final-logo.png"
-                            alt="TicketBari Logo"
-                            width={36}
-                            height={36}
-                            className="object-contain rounded-full h-auto"
+                            src="/logos/SoftPolli-logo-offset.png"
+                            alt="Softpolli Logo"
+                            width={150}
+                            height={80}
+                            className="object-contain h-auto"
                         />
-                        <span className="bg-linear-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
-                            TicketBari
-                        </span>
+                        {/* <span className="bg-linear-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
+                            SoftPolli
+                        </span> */}
                     </Link>
                 </div>
 
@@ -165,16 +165,13 @@ const Topbar = () => {
                         // Guest Layout
                         <div className="hidden items-center gap-3 md:flex">
                             <Link href="/login">
-                                <Button size="sm" variant="light" className="font-medium">
+                                <Button size="sm" variant="light" className="font-medium bg-violet-600">
                                     Login
                                 </Button>
                             </Link>
 
                             <Link href="/signup">
-                                <Button
-                                    size="sm"
-                                    className="font-medium shadow-sm bg-linear-to-r from-neutral-900 to-emerald-600 text-white hover:opacity-90 transition-opacity"
-                                >
+                                <Button size="sm" className="font-medium shadow-sm bg-linear-to-r from-neutral-900 to-emerald-600 text-white hover:opacity-90 transition-opacity" >
                                     Register
                                 </Button>
                             </Link>
@@ -185,17 +182,23 @@ const Topbar = () => {
 
             {isMenuOpen && (
                 <div className="border-t border-divider md:hidden bg-background">
-                    <nav className="flex flex-col gap-2 p-4">
-                        {navItems}
+                    <nav className="flex flex-row justify-between p-4">
+                        {/* {navItems} */}
+                        <Link href="/dashboard" className='font-medium shadow-sm bg-orange-500 rounded-4xl px-5 py-2 text-violet-900 hover:opacity-90 transition-opacity'>Dashboard</Link>
 
                         {!user && !isPending && (
-                            <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-divider">
-                                <Button as={Link} href="/login" size="sm" variant="bordered">
-                                    Login
-                                </Button>
-                                <Button as={Link} href="/signup" size="sm" color="primary">
-                                    Register
-                                </Button>
+                            <div className="grid grid-cols-2 gap-2 border-divider">
+                                <Link href="/login">
+                                    <Button as={Link} href="/login" size="sm" className="bg-violet-600">
+                                        Login
+                                    </Button>
+                                </Link>
+
+                                <Link href="/signup">
+                                    <Button as={Link} href="/signup" size="sm" color="primary">
+                                        Register
+                                    </Button>
+                                </Link>
                             </div>
                         )}
                     </nav>
