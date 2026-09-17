@@ -23,13 +23,13 @@ const LoginPage = () => {
             email: userData.email,
             password: userData.password,
             rememberMe: true,
-            callbackURL: "/",
+            callbackURL: "/dashboard",
         });
         console.log("sign in response:", { data, error });
 
         if (data) {
             toast.success("Log in Successful!");
-            router.push("/");
+            router.push("/dashboard");
             router.refresh();
         }
 
@@ -53,8 +53,13 @@ const LoginPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-[#7a9e9f]/30">
             <Card className="w-full max-w-md overflow-hidden rounded-none sm:rounded-lg shadow-2xl border-0 p-0 bg-transparent">
+
                 {/* Upper Section (Gray Background) */}
                 <div className="bg-[#d5d5d5] px-8 pt-10 pb-8 text-neutral-800">
+                    <h1 className="mb-8 text-center text-xl md:text-3xl font-extrabold tracking-tight bg-linear-to-t from-orange-600 to-orange-500 dark:from-white dark:to-green-400 bg-clip-text text-transparent">
+                        Log in to your account
+                    </h1>
+
                     <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
                         {/* Username / Email Field */}
                         <TextField

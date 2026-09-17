@@ -18,10 +18,10 @@ export async function proxy(request) {
 export const config = {
     matcher: [
         '/dashboard', 
-        // '/dashboard/profile', 
-        // '/dashboard/mybookings', 
-        // '/dashboard/addticket', 
-        // '/dashboard/addedtickets', 
+        '/dashboard/manageitems', 
+        '/dashboard/manageorders', 
+        '/dashboard/additem', 
+        '/dashboard/addorder', 
         // '/dashboard/requestedbookings', 
         // '/dashboard/revenue-overview', 
         // '/dashboard/mybookings', 

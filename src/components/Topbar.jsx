@@ -96,6 +96,7 @@ const Topbar = () => {
 
                 <div className="hidden items-center gap-2 md:flex">
                     {navItems}
+                    <Link href="/dashboard" className='hidden md:block font-medium shadow-sm bg-orange-400 rounded-4xl px-5 py-2 text-violet-900 hover:opacity-90 transition-opacity'>Dashboard</Link>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -136,13 +137,13 @@ const Topbar = () => {
                                         </Label>
                                     </Dropdown.Item>
 
-                                    <Dropdown.Item key="profile" textValue="My Profile">
-                                        <Link href="/profile" className="flex items-center gap-2 w-full text-default-700 py-1" >
+                                    <Dropdown.Item key="dashboard" textValue="Dashboard">
+                                        <Link href="/dashboard" className="flex items-center gap-2 w-full text-default-700 py-1" >
                                             <svg className="w-4 h-4 text-default-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                             <Label className="cursor-pointer font-medium text-sm">
-                                                My Profile
+                                                Dashboard
                                             </Label>
                                         </Link>
                                     </Dropdown.Item>
@@ -165,7 +166,7 @@ const Topbar = () => {
                         // Guest Layout
                         <div className="hidden items-center gap-3 md:flex">
                             <Link href="/login">
-                                <Button size="sm" variant="light" className="font-medium bg-violet-600">
+                                <Button size="sm" variant="light" className="text-white font-medium bg-violet-600">
                                     Login
                                 </Button>
                             </Link>

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
 import { useSession } from '@/lib/auth-client';
+import { FcPodiumWithSpeaker, FcViewDetails } from "react-icons/fc";
 
 
 const NavLink = ({ href, icon, children, pathname }) => {
@@ -32,8 +33,8 @@ const Sidebar = () => {
 
     const navItems = [
         // { icon: "📈", href: "/dashboard", label: "Dashboard" },
-        { icon: "👤", href: "/dashboard/manageitems", label: "Manage Items" },
-        { icon: "📊", href: "/dashboard/admin/manageorders", label: "Manage Orders" },
+        { icon: <FcPodiumWithSpeaker size={22} />, href: "/dashboard/manageitems", label: "Manage Items" },
+        { icon: <FcViewDetails size={20} />, href: "/dashboard/manageorders", label: "Manage Orders" },
         // { icon: "🧑", href: "/dashboard/admin/manage-user", label: "Manage User" },
     ];
 
