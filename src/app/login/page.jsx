@@ -5,6 +5,8 @@ import { Check, ArrowLeft, Eye, EyeClosed } from "@gravity-ui/icons";
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
+import { authClient } from '@/lib/auth-client';
 
 const LoginPage = () => {
 
@@ -43,12 +45,12 @@ const LoginPage = () => {
         }
     };
 
-    const handleGoogleSignIn = async () => {
-        const data = await authClient.signIn.social({
-            provider: "google",
-        });
-        console.log("Google sign in triggered", data);
-    };
+    // const handleGoogleSignIn = async () => {
+    //     const data = await authClient.signIn.social({
+    //         provider: "google",
+    //     });
+    //     console.log("Google sign in triggered", data);
+    // };
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4 bg-[#7a9e9f]/30">
@@ -139,17 +141,10 @@ const LoginPage = () => {
 
                         {/* Hidden Secondary Handlers kept for functional parity */}
                         <div className="flex justify-between items-center pt-2">
-                            <button
-                                type="button"
-                                onClick={handleGoogleSignIn}
-                                className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"
-                            >
+                            {/* <button type="button" onClick={handleGoogleSignIn} className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"  >
                                 Google Login
-                            </button>
-                            <button
-                                type="reset"
-                                className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"
-                            >
+                            </button> */}
+                            <button  type="reset" className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors" >
                                 Reset
                             </button>
                         </div>

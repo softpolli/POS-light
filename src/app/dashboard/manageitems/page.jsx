@@ -13,12 +13,12 @@ const ManageItemPage = async () => {
     const data = await res.json();
     const allItems = data.result;
 
-    // console.log(allItems)
+    console.log(allItems)
 
     return (
         <div className='px-2'>
             <h1 className="mb-5 font-semibold text-neutral-600 dark:text-white text-2xl tracking-wide">Manage Food Items</h1>
-            <Link href="/additem" className='px-2 py-3 mb-3 block text-center bg-orange-300 hover:bg-orange-400 text-orange-900 rounded-xl'> Item + </Link>
+            <Link href="/dashboard/additem" className='px-2 py-3 mb-3 block text-center bg-orange-300 hover:bg-orange-400 text-orange-900 rounded-xl'> Item + </Link>
             <div className="w-full">
 
                 {/* Mobile View: Cards (< 768px) */}
@@ -31,11 +31,11 @@ const ManageItemPage = async () => {
                             <div className="flex items-center gap-3">
                                 <div
                                     className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-divider"
-                                    style={{ backgroundImage: `url(${item.image})` }}
+                                    style={{ backgroundImage: `url(${item.image_url})` }}
                                 />
                                 <div>
                                     <h4 className="text-sm font-semibold text-foreground line-clamp-1">
-                                        {item.name}
+                                        {item.item_name}
                                     </h4>
                                     <p className="text-xs text-default-500 font-medium mt-0.5">
                                         ${item.price}
@@ -71,8 +71,8 @@ const ManageItemPage = async () => {
                                     {allItems.map((item, i) => (
                                         <Table.Row key={item._id || i}>
                                             <Table.Cell>{i + 1}</Table.Cell>
-                                            <Table.Cell> <div className="w-12 h-12 bg-cover bg-center rounded-md border border-divider" style={{ backgroundImage: `url(${item.image})` }} /> </Table.Cell>
-                                            <Table.Cell className="font-medium">{item.name}</Table.Cell>
+                                            <Table.Cell> <div className="w-12 h-12 bg-cover bg-center rounded-md border border-divider" style={{ backgroundImage: `url(${item.image_url})` }} /> </Table.Cell>
+                                            <Table.Cell className="font-medium">{item.item_name}</Table.Cell>
                                             <Table.Cell>${item.price}</Table.Cell>
                                             <Table.Cell>
                                                 <div className='flex gap-2'>

@@ -10,35 +10,6 @@ const OrderDetailsPage = () => {
 
     return (
         <div className="px-2">
-            {/* Scoped styles that isolate the receipt container on print */}
-            <style jsx global>{`
-                @media print {
-                    @page {
-                        size: 80mm auto;
-                        margin: 0;
-                    }
-                    body {
-                        visibility: hidden !important;
-                        margin: 0 !important;
-                        padding: 0 !important;
-                        background: #fff !important;
-                    }
-                    #pos-receipt {
-                        visibility: visible !important;
-                        position: absolute !important;
-                        left: 0 !important;
-                        top: 0 !important;
-                        width: 80mm !important;
-                        margin: 0 !important;
-                        padding: 4mm !important;
-                        box-shadow: none !important;
-                        background: #fff !important;
-                    }
-                    #pos-receipt * {
-                        visibility: visible !important;
-                    }
-                }
-            `}</style>
 
             {/* Hidden from print preview */}
             <div className="print:hidden">
