@@ -18,7 +18,7 @@ const ManageOrdersPage = async () => {
     return (
         <div className='px-2'>
             <h1 className="mb-5 font-semibold text-neutral-600 dark:text-white text-2xl tracking-wide">Manage Orders</h1>
-            <Link href="/additem" className='px-2 py-3 mb-3 block text-center bg-orange-300 hover:bg-orange-400 text-orange-900 rounded-xl'> Order + </Link>
+            <Link href="/dashboard/addorder" className='px-2 py-3 mb-3 block text-center bg-orange-300 hover:bg-orange-400 text-orange-900 rounded-xl'> Order + </Link>
             <div className="w-full">
 
                 {/* Mobile View: Cards (< 768px) */}
