@@ -73,12 +73,12 @@ const AddItemPage = () => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Ticket submitted for approval!",
+                title: "Food Item Added Successfully!",
                 showConfirmButton: false,
                 timer: 1000
             });
 
-            router.push("/dashboad/manageitems");
+            router.push("/dashboard/manageitems");
         }
 
         e.target.reset();

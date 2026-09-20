@@ -73,7 +73,7 @@ const ManageOrdersPage = async () => {
                                                         Details
                                                     </Link>
 
-                                                    <DeleteButton deleteData={item} endpoint="deletefooditem" text="Delete" />
+                                                    <DeleteButton deleteData={item} endpoint="deleteorder" text="Delete" />
                                                 </div>
                                             </Table.Cell>
                                         </Table.Row>

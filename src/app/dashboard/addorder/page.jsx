@@ -1,8 +1,13 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const AddOrderPage = () => {
+
+    const router = useRouter();
+
     const [foodItems, setFoodItems] = useState([]);
     const [cart, setCart] = useState([]);
 
@@ -16,14 +21,15 @@ const AddOrderPage = () => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_SERVER_URL}/allfooditems`
+                const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfooditems`,
+                    {
+                        cache: "no-store",
+                    }
                 );
-
                 const data = await res.json();
 
                 if (res.ok) {
-                    setFoodItems(data);
+                    setFoodItems(data.result);
                 } else {
                     console.error(data);
                 }
@@ -194,7 +200,19 @@ const AddOrderPage = () => {
                 );
             }
 
-            alert("Order created successfully!");
+            // alert("Order created successfully!");
+
+            if (data.success) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Order Placed Successfully!",
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+
+                router.push(`/dashboard/orderdetails/${data.orderId}`);
+            }
 
             clearCart();
 
@@ -244,7 +262,7 @@ const AddOrderPage = () => {
                                     <div key={foodItem._id} className="overflow-hidden rounded-xl bg-white shadow" >
 
                                         {/* Food Image */}
-                                        <div className="h-40 w-full bg-cover bg-center" style={{ backgroundImage: `url(${foodItem.image_url})`,}} />
+                                        <div className="h-40 w-full bg-cover bg-center" style={{ backgroundImage: `url(${foodItem.image_url})`, }} />
 
                                         <div className="p-4">
 
@@ -280,11 +298,7 @@ const AddOrderPage = () => {
                                 </h2>
 
                                 {cart.length > 0 && (
-                                    <button
-                                        type="button"
-                                        onClick={clearCart}
-                                        className="text-sm text-red-500 hover:underline"
-                                    >
+                                    <button onClick={clearCart} type="button" className="text-sm text-red-500 hover:underline" >
                                         Clear
                                     </button>
                                 )}
@@ -303,102 +317,55 @@ const AddOrderPage = () => {
                                     <div className="max-h-80 space-y-3 overflow-y-auto">
 
                                         {cart.map((item) => (
-                                            <div
-                                                key={item.item_id}
-                                                className="rounded-lg border p-3"
-                                            >
+                                            <div key={item.item_id} className="rounded-lg border p-3">
 
                                                 <div className="flex gap-3">
 
                                                     {/* Cart Image */}
-                                                    <div
-                                                        className="h-12 w-12 shrink-0 rounded-md border bg-cover bg-center"
-                                                        style={{
-                                                            backgroundImage: `url(${item.image_url})`,
-                                                        }}
-                                                    />
+                                                    <div className="h-12 w-12 shrink-0 rounded-md border bg-cover bg-center" style={{ backgroundImage: `url(${item.image_url})`, }} />
 
                                                     <div className="min-w-0 flex-1">
-
                                                         <div className="flex justify-between gap-2">
-
                                                             <div>
                                                                 <h3 className="font-medium">
-                                                                    {
-                                                                        item.item_name
-                                                                    }
+                                                                    {item.item_name}
                                                                 </h3>
 
                                                                 <p className="text-sm text-gray-500">
                                                                     ৳{" "}
-                                                                    {
-                                                                        item.price
-                                                                    }{" "}
+                                                                    {item.price}{" "}
                                                                     ×{" "}
-                                                                    {
-                                                                        item.quantity
-                                                                    }
+                                                                    {item.quantity}
                                                                 </p>
                                                             </div>
 
                                                             <p className="font-semibold">
                                                                 ৳{" "}
-                                                                {
-                                                                    item.subtotal
-                                                                }
+                                                                {item.subtotal}
                                                             </p>
-
                                                         </div>
-
                                                     </div>
                                                 </div>
 
                                                 {/* Quantity Controls */}
                                                 <div className="mt-3 flex items-center justify-between">
-
                                                     <div className="flex items-center gap-2">
 
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                decreaseQuantity(
-                                                                    item.item_id
-                                                                )
-                                                            }
-                                                            className="flex h-8 w-8 items-center justify-center rounded bg-gray-200 font-bold"
-                                                        >
+                                                        <button onClick={() => decreaseQuantity(item.item_id)} type="button" className="flex h-8 w-8 items-center justify-center rounded bg-gray-200 font-bold" >
                                                             −
                                                         </button>
 
                                                         <span className="w-6 text-center">
-                                                            {
-                                                                item.quantity
-                                                            }
+                                                            {item.quantity}
                                                         </span>
 
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                increaseQuantity(
-                                                                    item.item_id
-                                                                )
-                                                            }
-                                                            className="flex h-8 w-8 items-center justify-center rounded bg-gray-200 font-bold"
-                                                        >
+                                                        <button onClick={() => increaseQuantity(item.item_id)} type="button" className="flex h-8 w-8 items-center justify-center rounded bg-gray-200 font-bold"  >
                                                             +
                                                         </button>
 
                                                     </div>
 
-                                                    <button
-                                                        type="button"
-                                                        onClick={() =>
-                                                            removeFromCart(
-                                                                item.item_id
-                                                            )
-                                                        }
-                                                        className="text-sm text-red-500 hover:underline"
-                                                    >
+                                                    <button onClick={() => removeFromCart(item.item_id)} type="button" className="text-sm text-red-500 hover:underline" >
                                                         Remove
                                                     </button>
 
@@ -434,11 +401,7 @@ const AddOrderPage = () => {
                                                 type="number"
                                                 min="0"
                                                 value={discount}
-                                                onChange={(e) =>
-                                                    setDiscount(
-                                                        e.target.value
-                                                    )
-                                                }
+                                                onChange={(e) => setDiscount(e.target.value)}
                                                 className="w-full rounded-lg border px-3 py-2 outline-none focus:border-black"
                                                 placeholder="0"
                                             />
@@ -467,11 +430,7 @@ const AddOrderPage = () => {
                                                 type="number"
                                                 min="0"
                                                 value={paidAmount}
-                                                onChange={(e) =>
-                                                    setPaidAmount(
-                                                        e.target.value
-                                                    )
-                                                }
+                                                onChange={(e) => setPaidAmount(e.target.value)}
                                                 className="w-full rounded-lg border px-3 py-2 outline-none focus:border-black"
                                                 placeholder="Enter paid amount"
                                             />
@@ -492,20 +451,8 @@ const AddOrderPage = () => {
                                         </div>
 
                                         {/* Create Order */}
-                                        <button
-                                            type="button"
-                                            disabled={
-                                                submitting ||
-                                                cart.length === 0
-                                            }
-                                            onClick={
-                                                handleSubmitOrder
-                                            }
-                                            className="mt-5 w-full rounded-lg bg-green-600 px-4 py-3 font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-400"
-                                        >
-                                            {submitting
-                                                ? "Creating Order..."
-                                                : "Create Order"}
+                                        <button disabled={submitting || cart.length === 0} onClick={handleSubmitOrder} type="button" className="mt-5 w-full rounded-lg bg-green-600 px-4 py-3 font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-400" >
+                                            {submitting ? "Creating Order..." : "Create Order"}
                                         </button>
 
                                     </div>
