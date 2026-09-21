@@ -1,19 +1,24 @@
 import DeleteButton from '@/components/Dashboard/DeleteButton';
+import { protectedFetch } from '@/lib/core/server';
 import { Table } from '@heroui/react';
 import Link from 'next/link';
 import React from 'react';
 
 const ManageItemPage = async () => {
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfooditems`,
-        {
-            cache: "no-store",
-        });
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfooditems`,
+    //     {
+    //         cache: "no-store",
+    //     });
     // const res = await fetch("http://localhost:5000/allfooditems");
-    const data = await res.json();
-    const allItems = data.result;
+    // const data = await res.json();
+    // const allItems = data.result;
 
-    console.log(allItems)
+    const allfooditemsData = await  protectedFetch('/allfooditems');
+
+    // console.log(allfooditemsData)
+
+    const allItems = allfooditemsData.result;
 
     return (
         <div className='px-2'>
