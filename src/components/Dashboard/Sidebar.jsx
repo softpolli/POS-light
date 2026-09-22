@@ -80,15 +80,32 @@ const Sidebar = () => {
 
             {/* Company Advertisement */}
             <div className="p-4 border-t border-slate-100 dark:border-slate-800">
-                <div className="flex items-center gap-3 px-2 py-1.5 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors cursor-pointer">
-                    <div className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                        SP
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
-                            SoftPolli
+                <div className="px-2 py-1.5">
+                    <div className="flex flex-col">
+
+                        <div className="flex items-center gap-1 min-w-0">
+                            <div className="w-6 h-6 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                                BE
+                            </div>
+                            <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">
+                                Bistro Express
+                            </p>
+                        </div>
+                        <p className="text-[10px] text-slate-400 truncate">
+                            A POS Solution by <span className="font-semibold text-purple-800">Soft</span><span className="font-semibold text-orange-700">Polli</span>
                         </p>
-                        <p className="text-[10px] text-slate-400 truncate">softpolli.com</p>
+                    </div>
+
+                    <div className="mt-3 pl-1">
+                        <p className="text-[10px] font-medium text-slate-500 dark:text-slate-400 truncate">
+                            Developed by <span className="font-semibold text-slate-700 dark:text-slate-300">Taukir Ahmed</span>
+                        </p>
+                        <p className="text-[9px] text-slate-400 dark:text-slate-500 truncate">
+                            Senior MERN &amp; Next.js Developer
+                        </p>
+                        <p className="mt-1.5 text-[9px] text-slate-300 dark:text-slate-600">
+                            © 2026 Bistro Express
+                        </p>
                     </div>
                 </div>
             </div>

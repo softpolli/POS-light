@@ -6,7 +6,8 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import MyNavLink from './MyNavLink';
 import { usePathname, useRouter } from 'next/navigation';
-import { useSession } from '@/lib/auth-client';
+import { signOut, useSession } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
 
 const Topbar = () => {
 
@@ -48,46 +49,19 @@ const Topbar = () => {
         <div className="sticky top-0 z-40 w-full border-b border-divider bg-background/70 backdrop-blur-lg">
             <header className="flex h-16 items-center justify-between px-6">
                 <div className="flex items-center gap-4">
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-1 text-default-600 hover:bg-default-100 rounded-lg transition-colors"
-                        aria-label="Toggle menu"
-                    >
-                        <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
+
+                    <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-1 text-default-600 hover:bg-default-100 rounded-lg transition-colors" aria-label="Toggle menu"  >
+                        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" >
                             {isMenuOpen ? (
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             ) : (
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M4 6h16M4 12h16M4 18h16"
-                                />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                             )}
                         </svg>
                     </button>
 
-                    <Link
-                        href="/"
-                        className="flex items-center gap-2 font-bold text-xl text-foreground hover:opacity-90"
-                    >
-                        <Image
-                            src="/logos/SoftPolli-logo-offset.png"
-                            alt="Softpolli Logo"
-                            width={150}
-                            height={80}
-                            className="object-contain h-auto"
-                        />
+                    <Link href="/" className="flex items-center gap-2 font-bold text-xl text-foreground hover:opacity-90" >
+                        <Image src="/logos/SoftPolli-logo-offset.png" alt="Softpolli Logo" width={150} height={80} className="object-contain h-auto"/>
                         {/* <span className="bg-linear-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
                             SoftPolli
                         </span> */}
@@ -97,6 +71,7 @@ const Topbar = () => {
                 <div className="hidden items-center gap-2 md:flex">
                     {navItems}
                     <Link href="/dashboard" className='hidden md:block font-medium shadow-sm bg-orange-400 rounded-4xl px-5 py-2 text-violet-900 hover:opacity-90 transition-opacity'>Dashboard</Link>
+                    <Link href="/about" className='hidden md:block font-medium shadow-sm bg-violet-400 rounded-4xl px-5 py-2 text-orange-900 hover:opacity-90 transition-opacity'>About</Link>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -106,11 +81,7 @@ const Topbar = () => {
                         </div>
                     ) : user ? (
                         <Dropdown>
-                            <Button
-                                aria-label="User menu"
-                                variant="light"
-                                className="flex items-center gap-2 h-auto py-1.5 px-2.5 rounded-full hover:bg-default-100"
-                            >
+                            <Button aria-label="User menu" variant="light" className="flex items-center gap-2 h-auto py-1.5 px-2.5 rounded-full hover:bg-default-100" >
                                 <Avatar>
                                     <Avatar.Image src={user?.image} alt={user?.name} />
                                     <Avatar.Fallback>
@@ -166,13 +137,13 @@ const Topbar = () => {
                         // Guest Layout
                         <div className="hidden items-center gap-3 md:flex">
                             <Link href="/login">
-                                <Button size="sm" variant="light" className="text-white font-medium bg-violet-600">
+                                <Button size="sm" variant="light" className="text-white font-medium bg-linear-to-t from-violet-800 to-violet-600">
                                     Login
                                 </Button>
                             </Link>
 
                             <Link href="/signup">
-                                <Button size="sm" className="font-medium shadow-sm bg-linear-to-r from-neutral-900 to-emerald-600 text-white hover:opacity-90 transition-opacity" >
+                                <Button size="sm" className="font-medium shadow-sm bg-linear-to-t from-orange-800 to-orange-600 text-white hover:opacity-90 transition-opacity" >
                                     Register
                                 </Button>
                             </Link>

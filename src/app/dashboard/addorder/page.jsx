@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
@@ -8,6 +9,7 @@ const AddOrderPage = () => {
 
     const router = useRouter();
 
+    const [searchText, setSearchText] = useState("");
     const [foodItems, setFoodItems] = useState([]);
     const [cart, setCart] = useState([]);
 
@@ -21,11 +23,15 @@ const AddOrderPage = () => {
     useEffect(() => {
         const fetchFoodItems = async () => {
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allfooditems`,
+                setLoading(true);
+
+                const res = await fetch(
+                    `/api/fooditems?searchText=${encodeURIComponent(searchText)}`,
                     {
                         cache: "no-store",
                     }
                 );
+
                 const data = await res.json();
 
                 if (res.ok) {
@@ -41,7 +47,7 @@ const AddOrderPage = () => {
         };
 
         fetchFoodItems();
-    }, []);
+    }, [searchText]);
 
     // Add item to cart
     const addToCart = (foodItem) => {
@@ -228,9 +234,20 @@ const AddOrderPage = () => {
     return (
         <div className="min-h-screen bg-gray-100 p-4 md:p-6">
             <div className="mx-auto max-w-7xl">
-                <h1 className="mb-6 text-2xl font-bold text-gray-800">
+                <h1 className="mb-5 font-semibold text-neutral-600 dark:text-white text-2xl tracking-wide">
                     Create New Order
                 </h1>
+
+                {/* Search */}
+                <div className="mb-4">
+                    <input
+                        type="text"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        placeholder="Search food items..."
+                        className="w-full px-4 py-3 border border-divider rounded-xl bg-content1 text-foreground outline-none focus:border-orange-400"
+                    />
+                </div>
 
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
 
@@ -250,6 +267,7 @@ const AddOrderPage = () => {
                         {loading ? (
                             <div className="rounded-lg bg-white p-8 text-center shadow">
                                 Loading food items...
+                                <LoadingSpinner></LoadingSpinner>
                             </div>
                         ) : foodItems.length === 0 ? (
                             <div className="rounded-lg bg-white p-8 text-center shadow">

@@ -63,6 +63,7 @@ const LoginPage = () => {
                     </h1>
 
                     <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
+
                         {/* Username / Email Field */}
                         <TextField
                             isRequired
@@ -79,10 +80,12 @@ const LoginPage = () => {
                             <Label className="text-sm font-medium text-neutral-800 block mb-1">
                                 Username *
                             </Label>
+
                             <Input
                                 placeholder="Enter your Username"
                                 className="w-full bg-white text-neutral-800 rounded-full px-5 py-3 text-sm placeholder:text-neutral-400 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-[#f24423]/50 transition-all shadow-inner"
                             />
+
                             <FieldError className="text-xs text-red-600 mt-1 pl-3" />
                         </TextField>
 
@@ -96,12 +99,14 @@ const LoginPage = () => {
                             <Label className="text-sm font-medium text-neutral-800 block mb-1">
                                 Password *
                             </Label>
+
                             <div className="w-full relative flex items-center">
                                 <Input
                                     placeholder="Enter your Password"
                                     className="w-full bg-white text-neutral-800 rounded-full pl-5 pr-12 py-3 text-sm placeholder:text-neutral-400 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-[#f24423]/50 transition-all shadow-inner"
                                     type={passToggle ? "password" : "text"}
                                 />
+
                                 <Button
                                     type="button"
                                     onClick={() => setPassToggle(!passToggle)}
@@ -112,6 +117,7 @@ const LoginPage = () => {
                                     {passToggle ? <EyeClosed size={18} /> : <Eye size={18} />}
                                 </Button>
                             </div>
+
                             <FieldError className="text-xs text-red-600 mt-1 pl-3" />
                         </TextField>
 
@@ -123,6 +129,7 @@ const LoginPage = () => {
                                 name="rememberMe"
                                 className="w-3.5 h-3.5 accent-[#f24423] rounded cursor-pointer border-neutral-400"
                             />
+
                             <label
                                 htmlFor="rememberMe"
                                 className="text-xs font-medium text-neutral-700 cursor-pointer select-none"
@@ -141,25 +148,80 @@ const LoginPage = () => {
 
                         {/* Hidden Secondary Handlers kept for functional parity */}
                         <div className="flex justify-between items-center pt-2">
-                            {/* <button type="button" onClick={handleGoogleSignIn} className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"  >
-                                Google Login
-                            </button> */}
-                            <button  type="reset" className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors" >
+                            {/* <button
+                        type="button"
+                        onClick={handleGoogleSignIn}
+                        className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"
+                    >
+                        Google Login
+                    </button> */}
+
+                            <button
+                                type="reset"
+                                className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"
+                            >
                                 Reset
                             </button>
                         </div>
                     </Form>
                 </div>
 
-                {/* Bottom Footer Section (White with Orange Bar) */}
+                {/* Bottom Footer Section */}
                 <div className="bg-white px-8 pt-8 pb-7 relative border-b-4 border-[#f24423]">
+
+                    {/* Account Links */}
                     <div className="flex items-center justify-between text-xs font-bold text-[#f24423]">
-                        <Link href="/signup" className="hover:underline transition-colors">
+                        <Link
+                            href="/signup"
+                            className="hover:underline transition-colors"
+                        >
                             Don&apos;t have an account?
                         </Link>
-                        <Link href="/forgot-password" className="hover:underline transition-colors">
+
+                        <Link
+                            href="/forgot-password"
+                            className="hover:underline transition-colors"
+                        >
                             Forgot password?
                         </Link>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="border-t border-slate-100 my-5" />
+
+                    {/* Product & Company Branding */}
+                    <div className="text-center">
+
+                        {/* Product */}
+                        <p className="text-sm font-bold text-slate-700 tracking-wide">
+                            Bistro Express
+                        </p>
+
+                        <p className="mt-0.5 text-[10px] text-slate-400">
+                            A POS Solution by{" "}
+                            <span className="font-semibold text-emerald-600">
+                                SoftPolli
+                            </span>
+                        </p>
+
+                        {/* Developer */}
+                        <div className="mt-3">
+                            <p className="text-[10px] text-slate-500">
+                                Developed by{" "}
+                                <span className="font-semibold text-slate-700">
+                                    Taukir Ahmed
+                                </span>
+                            </p>
+
+                            <p className="mt-0.5 text-[9px] text-slate-400">
+                                Senior MERN &amp; Next.js Developer
+                            </p>
+                        </div>
+
+                        {/* Copyright */}
+                        <p className="mt-3 text-[9px] text-slate-300">
+                            © 2026 Bistro Express
+                        </p>
                     </div>
                 </div>
             </Card>

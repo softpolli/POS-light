@@ -13,7 +13,7 @@ export default function Home() {
               <div className="flex items-center justify-center gap-2 mb-4">
                 <span className="h-px w-8 bg-gray-200" />
                 <p className="text-xs text-gray-500 uppercase tracking-widest font-semibold text-center">
-                  Proudly Developed By
+                  A POS Solution by
                 </p>
                 <span className="h-px w-8 bg-gray-200" />
               </div>
