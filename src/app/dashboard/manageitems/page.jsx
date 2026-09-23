@@ -52,14 +52,11 @@ const ManageItemPage = () => {
 
     return (
         <div className="px-2">
-            <h1 className="mb-5 font-semibold text-neutral-600 dark:text-white text-2xl tracking-wide">
+            <h1 className="mb-5 text-center md:text-start font-semibold text-neutral-600 dark:text-white text-2xl tracking-wide">
                 Manage Food Items
             </h1>
 
-            <Link
-                href="/dashboard/additem"
-                className="px-2 py-3 mb-3 block text-center bg-orange-300 hover:bg-orange-400 text-orange-900 rounded-xl"
-            >
+            <Link href="/dashboard/additem" className="px-2 py-3 mb-3 block text-center bg-orange-300 hover:bg-orange-400 text-orange-900 rounded-xl">
                 Item +
             </Link>
 
@@ -79,35 +76,26 @@ const ManageItemPage = () => {
                 {/* Mobile View */}
                 <div className="flex flex-col gap-3 md:hidden">
                     {allItems.map((item, i) => (
-                        <div
-                            key={item._id || i}
-                            className="flex items-center justify-between p-3.5 bg-content1 border border-divider rounded-xl shadow-xs"
-                        >
+                        <div key={item._id || i} className="flex items-center justify-between p-3.5 bg-content1 border border-divider rounded-xl shadow-xs"  >
                             <div className="flex items-center gap-3">
-                                <div
-                                    className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-divider"
-                                    style={{
-                                        backgroundImage: `url(${item.image_url})`,
-                                    }}
-                                />
+                                <div className="w-19 h-19 rounded-lg bg-cover bg-center shrink-0 border border-divider" style={{ backgroundImage: `url(${item.image_url})`, }} />
 
-                                <div>
-                                    <h4 className="text-sm font-semibold text-foreground line-clamp-1">
+                                <div className="flex flex-col gap-3">
+                                    <h4 className="text-base font-semibold text-foreground line-clamp-2">
                                         {item.item_name}
                                     </h4>
 
-                                    <p className="text-xs text-default-500 font-medium mt-0.5">
-                                        ${item.price}
+                                    <p className="text-sm tracking-wider font-semibold mt-0.5">
+                                        ৳ {item.price}
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="shrink-0">
-                                <DeleteButton
-                                    deleteData={item}
-                                    endpoint="deletefooditem"
-                                    text="Delete"
-                                />
+                            <div className="shrink-0 flex flex-col gap-1">
+                                <Link href={`/dashboard/edititem/${item._id}`} className="px-2 py-2.5 rounded-4xl transition-all duration-200 shadow-sm bg-emerald-300 hover:bg-emerald-600 text-sm text-center text-emerald-900 dark:text-blue-200 hover:text-white dark:hover:text-blue-950 active:scale-[0.98]" >
+                                    Update
+                                </Link>
+                                <DeleteButton deleteData={item} endpoint="deletefooditem" text="Delete" />
                             </div>
                         </div>
                     ))}
@@ -117,10 +105,7 @@ const ManageItemPage = () => {
                 <div className="hidden md:block w-full">
                     <Table>
                         <Table.ScrollContainer>
-                            <Table.Content
-                                aria-label="Food items"
-                                className="w-full"
-                            >
+                            <Table.Content aria-label="Food items" className="w-full"  >
                                 <Table.Header>
                                     <Table.Column isRowHeader>
                                         #
@@ -147,12 +132,7 @@ const ManageItemPage = () => {
                                             </Table.Cell>
 
                                             <Table.Cell>
-                                                <div
-                                                    className="w-12 h-12 bg-cover bg-center rounded-md border border-divider"
-                                                    style={{
-                                                        backgroundImage: `url(${item.image_url})`,
-                                                    }}
-                                                />
+                                                <div className="w-12 h-12 bg-cover bg-center rounded-md border border-divider" style={{ backgroundImage: `url(${item.image_url})`, }} />
                                             </Table.Cell>
 
                                             <Table.Cell className="font-medium">
@@ -165,18 +145,11 @@ const ManageItemPage = () => {
 
                                             <Table.Cell>
                                                 <div className="flex gap-2">
-                                                    <Link
-                                                        href={`/dashboard/edititem/${item._id}`}
-                                                        className="px-3 py-2 rounded-4xl transition-all duration-200 shadow-sm bg-emerald-300 hover:bg-emerald-600 text-emerald-900 dark:text-blue-200 hover:text-white dark:hover:text-blue-950 active:scale-[0.98]"
-                                                    >
+                                                    <Link href={`/dashboard/edititem/${item._id}`} className="px-3 py-2 rounded-4xl transition-all duration-200 shadow-sm bg-emerald-300 hover:bg-emerald-600 text-emerald-900 dark:text-blue-200 hover:text-white dark:hover:text-blue-950 active:scale-[0.98]" >
                                                         Update
                                                     </Link>
 
-                                                    <DeleteButton
-                                                        deleteData={item}
-                                                        endpoint="deletefooditem"
-                                                        text="Delete"
-                                                    />
+                                                    <DeleteButton deleteData={item} endpoint="deletefooditem" text="Delete" />
                                                 </div>
                                             </Table.Cell>
                                         </Table.Row>

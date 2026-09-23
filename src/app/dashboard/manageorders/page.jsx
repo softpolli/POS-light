@@ -24,20 +24,27 @@ const ManageOrdersPage = async () => {
                 {/* Mobile View: Cards (< 768px) */}
                 <div className="flex flex-col gap-3 md:hidden">
                     {allOrders.map((item, i) => (
-                        <div key={item._id || i} className="flex items-center justify-between p-3.5 bg-content1 border border-divider rounded-xl shadow-xs"  >
-                            <div className="flex items-center gap-3">
-                                <div className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-divider" style={{ backgroundImage: `url(${item.image})` }} />
-                                <div>
+                        <div key={item._id || i} className="flex items-center justify-between p-3 bg-content1 border border-divider border-gray-300 rounded-xl shadow-xs"  >
+                            <div className="flex items-center gap-5">
+                                {/* <div className="w-12 h-12 rounded-lg bg-cover bg-center shrink-0 border border-divider" style={{ backgroundImage: `url(${item.image})` }} /> */}
+                                <div className='flex flex-col gap-1'>
                                     <h4 className="text-sm font-semibold text-foreground line-clamp-1">
-                                        {item.name}
+                                        {item.orderNumber}
                                     </h4>
-                                    <p className="text-xs text-default-500 font-medium mt-0.5">
-                                        ${item.price}
-                                    </p>
+                                    <h4 className="text-sm text-foreground line-clamp-1">
+                                        {new Date(item.orderDate).toLocaleDateString()}
+                                    </h4>
                                 </div>
+                                <p className="text-xs text-default-500 font-medium mt-0.5">
+                                    ${item.total}
+                                </p>
                             </div>
 
-                            <div className="shrink-0">
+                            <div className="shrink-0 flex gap-1">
+                                <Link href={`/dashboard/orderdetails/${item._id}`}
+                                    className="px-3 py-2 rounded-4xl transition-all duration-200 shadow-sm bg-emerald-300 hover:bg-emerald-600 text-emerald-900 dark:text-blue-200 hover:text-white dark:hover:text-blue-950 active:scale-[0.98]">
+                                    Details
+                                </Link>
                                 <DeleteButton deleteData={item} endpoint="deletefooditem" text="Delete" />
                             </div>
                         </div>
